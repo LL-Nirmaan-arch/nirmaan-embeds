@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nirmaan - Where we work</title>
+<!-- Wix Studio Embed HTML: Presence map. Set embed height: desktop 900px, tablet 1150px, mobile 1050px (verify). Edit states in the .state-card list and path classes active/suspended. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--gutter:32px; --section-y:100px; --primary:#123B78; --primary-light:#2859B6; --primary-dark:#0D2A57; --green:#4AA54E; --green-light:#E9F5EA; --green-dark:#357A39; --gold:#E0A23D; --gold-dark:#B47C25; --neutral:#7F7E81; --ink:#1E2430; --paper:#FAFAFB; --card:#FFFFFF; --text-soft:#5C5F66; --border:#E6E6EA;}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink); line-height:1.6;}
+h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 var(--gutter);}
+@media (max-width:960px){:root{--gutter:24px; --section-y:72px;}}
+@media (max-width:520px){:root{--gutter:20px; --section-y:60px;}}
+.leaf-deco{position:absolute; pointer-events:none; z-index:0; opacity:.09;}
+.section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+.section-head .eyebrow-line{display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;}
+.section-head .eyebrow-line span{font-size:12.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dark);}
+.section-head .eyebrow-line i{display:block; width:34px; height:2px; background:var(--green);}
+.section-head h2{font-size:32px; font-weight:700; color:var(--primary); letter-spacing:-.01em; margin-bottom:14px;}
+.section-head p{font-size:16px; color:var(--text-soft); max-width:560px; margin:0 auto;}
+/* ---------- OUR PRESENCE ---------- */
+  .presence{padding:var(--section-y) 0; background:var(--card); position:relative; overflow:hidden; overflow:clip;}
+.presence .wrap{position:relative; z-index:1;}
+.presence .section-head{margin-bottom:48px;}
+.presence-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:stretch;}
+.map-card{position:relative; background:var(--paper); border:1px solid var(--border); border-radius:20px; padding:24px 24px 18px; display:flex; flex-direction:column; justify-content:center;}
+.map-card svg{display:block; width:100%; height:auto; max-height:560px;}
+.st{fill:#E3E8F0; stroke:#fff; stroke-width:1.2; stroke-linejoin:round; transition:fill .2s ease, opacity .2s ease;}
+.st.active{fill:var(--green-dark); cursor:pointer;}
+.st.suspended{fill:#A9BBDD; cursor:pointer;}
+.st.active.is-hot{fill:var(--green);}
+.st.suspended.is-hot{fill:#7F98C8;}
+.map-card.has-hot .st:not(.is-hot){opacity:.55;}
+.hq-pulse{fill:var(--primary); opacity:.35; transform-origin:84px 512px; animation:hqPulse 2.4s ease-out infinite;}
+.hq-pulse.p2{animation-delay:1.2s;}
+.hq-dot{fill:var(--primary); stroke:#fff; stroke-width:2;}
+.hq-label rect{fill:var(--primary);}
+.hq-label text{fill:#fff; font:600 11px 'Inter',sans-serif; letter-spacing:.02em;}
+@keyframes hqPulse{0%{transform:scale(1); opacity:.4;} 100%{transform:scale(4.2); opacity:0;}}
+@media (prefers-reduced-motion:reduce){.hq-pulse{animation:none; opacity:0;}}
+.map-tip{position:absolute; pointer-events:none; background:var(--ink); color:#fff; font-size:13px; font-weight:600; padding:6px 10px; border-radius:8px; white-space:nowrap; opacity:0; transform:translate(-50%,-130%); transition:opacity .15s ease;}
+.map-tip span{font-weight:400; color:rgba(255,255,255,.75); margin-left:6px;}
+.map-tip.show{opacity:1;}
+.map-legend{display:flex; flex-wrap:wrap; gap:18px; justify-content:center; margin-top:14px; font-size:13.5px; color:var(--text-soft);}
+.map-legend span{display:inline-flex; align-items:center; gap:7px;}
+.map-legend .lg-active{background:var(--green-dark);}
+.map-legend .lg-susp{background:#A9BBDD;}
+.map-legend .lg-hq{background:var(--primary); border-radius:50%; box-shadow:0 0 0 3px rgba(18,59,120,.18);}
+.map-legend i{width:12px; height:12px; border-radius:3px; display:inline-block;}
+.state-list{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:space-between;}
+.state-card.active{grid-column:1 / -1;}
+.state-card{display:grid; grid-template-columns:40px 1fr; gap:12px; align-items:start; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 16px; transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease; outline:none;}
+.state-card:hover,.state-card:focus-visible,.state-card.is-hot{border-color:var(--green); box-shadow:0 10px 24px rgba(18,59,120,.08); transform:translateY(-2px);}
+.state-card.suspended:hover,.state-card.suspended:focus-visible,.state-card.suspended.is-hot{border-color:#7F98C8;}
+.state-badge{width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:14px; letter-spacing:.04em; color:#fff; background:var(--green-dark);}
+.state-card.suspended .state-badge{background:#E6EBF4; color:#5E77A8;}
+.state-badge svg{width:28px; height:28px; display:block;}
+.state-badge path{fill:currentColor;}
+.state-top{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px 10px; margin-bottom:6px;}
+.state-top h3{font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:700; color:var(--primary);}
+/* states "light up" one by one when the map scrolls into view */
+  .map-card.reveal .st.active,.map-card.reveal .st.suspended{fill:#E3E8F0;}
+.map-card.reveal.in .st.active{fill:var(--green-dark); transition:fill .6s ease var(--d,0s);}
+.map-card.reveal.in .st.suspended{fill:#A9BBDD; transition:fill .6s ease var(--d,0s);}
+.map-card.reveal.in .st.is-hot.active{fill:var(--green);}
+.map-card.reveal.in .st.is-hot.suspended{fill:#7F98C8;}
+@media (max-width:960px){.presence-grid{grid-template-columns:1fr; gap:24px;}
+.map-card{max-width:520px; margin:0 auto; width:100%; padding:18px 14px 14px;}
+/* state cards become a swipeable strip under the map */
+    .state-list{display:flex; flex-direction:row; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; padding:4px 2px 14px; margin:0 calc(-1 * var(--gutter)); padding-left:var(--gutter); padding-right:var(--gutter); scrollbar-width:none;}
+.state-list::-webkit-scrollbar{display:none;}
+.state-card{flex:0 0 82%; max-width:340px; scroll-snap-align:center;}
+.state-card:hover,.state-card:focus-visible,.state-card.is-hot{transform:none;}
+.map-legend{gap:12px; font-size:12.5px;}}
+@media (prefers-reduced-motion:reduce){.comm-photo .slide{transition:opacity .01s; transform:none;}}
+@media (max-width:960px){.comm-photo{max-width:none;}}
+.status{display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:20px;}
+.status::before{content:''; width:6px; height:6px; border-radius:50%; background:currentColor;}
+.status.on{color:var(--green-dark); background:var(--green-light);}
+.status.off{color:#4A5A78; background:#EEF1F6;}
+.pills{display:flex; flex-wrap:wrap; gap:6px;}
+.pill{font-size:13px; font-weight:500; padding:4px 10px; border-radius:20px; line-height:1.4;}
+.pill.on{background:var(--green-light); color:var(--green-dark);}
+.pill.off{background:transparent; color:#5C5F66; border:1px dashed #C4C9D4;}
+.pills-label{display:block; width:100%; font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6B7080; margin:4px 0 0;}
+.swipe-hint{display:none;}
+@media (max-width:960px){.swipe-hint{display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px; color:var(--text-soft); margin-top:-8px;}}
+body{background:transparent}</style></head><body>
+<section class="presence" id="presence">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line"><i></i><span>Our Presence</span><i></i></div>
+      <h2>Where we work</h2>
+    </div>
+    <div class="presence-grid">
+      <div class="map-card reveal" id="mapCard">
+        <svg viewBox="-114 -50 612 696" role="img" aria-label="Map of India showing Nirmaan's presence: active in Rajasthan, Jharkhand, Karnataka and Kerala; past work in Himachal Pradesh and Tamil Nadu; head office in Bengaluru.">
+        <path id="st-an" class="st" d="M423 635l1 4 0 4-3-2-2-3 4-3zM396 558l1 4-1 3-3-2 1-5zM399 530l2 3-1 4-1 4-3-2 0-4 2-4 5-2zM404 514l1 4 0 4-3 3-3-3 1-4 2-3-3-2 0 3zM406 501l1 4-1 5-2 3-3-2 1-4 1-4 3-5z" data-name="Andaman & Nicobar"/>
+        <path id="st-ap" class="st" d="M181 432l0 4-5 2-4 1-4 1-4 0-4 1-2 4-2 4-2 4-4 0-3-3-4 1-4 3-1 4-2 4-1 4 0 5 1 4 1 4 0 5-1 4 2 4 0 5 1 4-2-3 0 4 3 2-4-3-3 2-3 3-5 1-3-2-2 4-3 1-5 1-4 0-3 2-1 3-2 4-5-1 0-3 3-2 2-4 1-3-4-2 0-3-3-2-3-2 0-4-5-2-3 4-3 0-4-2-3-1-3 3-1-4-3-4 4 2 4 1 3 3 0-5 2-3-4-1-4-1-4 1 0-3-3-3 0-4 1-3-1-4 3 1 4-2 0-4-2-3 0-4 1-5 3-3 4 1 5 1 4 0 4 0 4-1 2-2 4-1 4 1 3-3 4-2 4 0 0-5 3-2 4-2 4-1 3 2 3-4 1-4 3-1 2 4 4 2 1-4-4 0 3-4 5 2 3-3 5-1 3-2 3-2 2-3 1-4 4-2 3-4 4-1 4 0 1-5 1-3 4 1 4 0 5 0 2-4 0-4 4-1 1-4 3-2 3-2 2 4 3 3 4 1 4 0 3-2 2-4 4-2 0 4-2 4-3 3-3 3-3 4-4 2-4 2-4 2-3 4-2 3-3 3-4 2-4 3-4 2-4 2-3 4 1 3z" data-name="Andhra Pradesh"/>
+        <path id="st-ar" class="st" d="M472 142l2 4-3 3 1 5 3-3 4-1 1 5 0 3-2 3-2 3 3 1 4 0 4 1 4 1 3 2 3 2 0 4-2 2-4 3-2 3-1 4 1 3 3 4-5 0-2-3-4-1-3 2-5 0-4 2-2 4-4 2-2 3-4 2-3 2-2-4 0-4 4-2 2-4 4 0 4 0 2-3-2-4-2-3 2-4-3-3-4 1-4 2-4 0-4 2-4 1-4 2-4 1-3 0-3 3-3 3-3 4-3 3-4 2-4 0-5 0-3-1-5-1-3 2-4 1-4 0-2-3-1-3 0-4-3-3-4-1-3-2 2-4 4 0 5 0 3-2 5 1 3-2 2-3 2-4 3-2 4-1 2-4 2-3 4-2 4 0 4 0 3-4 3-3 2-4 4-2 3-2 4 3 3 1 4 1 4 1 3 0 3-4 3-2 3-2 4-1z" data-name="Arunachal Pradesh"/>
+        <path id="st-as" class="st" d="M388 201l4 0 4-1 4-2 4 1 4 2 4-1 4 0 5-1 2-4 3-3 3-4 2-3 5 0 3-1 4-2 4-1 4-2 4 0 4-2 5-1 4 0-3 4-1 4 2 3 2 4-3 1-4 2-4 0-2 3-4 2-4 2-4 3-3 2-4 2-2 4-4 3-3 3-1 4-1 4-4-1-3 3-3 3-1 3 2 3-2 4-2 4-1 3-3 3-1 4-1 4-4 1-4 1-2 3-5-1-1-3 0-5 0-4 4-3 0-3 4-2 3-3-1-3-3-2-1-4-3-3-4 1-1-4 2-4-5 0-3 0-4 3-3-1-2 3-3 2-4-2-3-2-4 0-4-1-4-1-5 1-3 2-3 4 2 3-3-3 0-4-1-4-2-3 2-4 1-4 0-5 4 0 3-2 4-2 4 3 4 0 5 0 4-1 4 0 4 1 4-1 4-1 4 0z" data-name="Assam"/>
+        <path id="st-br" class="st" d="M220 188l3 2 5 1 3 2 0 4 4 2 3 2 4 1 3 3 4-2 4 0 1 4 4 1 4-1 5 1 4 2 3 2 4-1 3-2 2 4 4 1 3-2 4 0 4 0 4 1 2-3 3 2-2 4-3 3-4 2-1 4 3 3 2 3 0 3-4 0-2 3 1 4-3-3-4 1-4 2-3 3 0 5-2 3-3 2-4 1-4 2-2 3-3-2-2-3-3-3-4-1-4 2-2 3-4 1-4 1-3 2-3 1-3-4-3 3-3 2-4-2-1-4-4-1-4 1-4 1-3-3-2-3-2-4 0-4 2-3 3-2 3-2 3-2 4-3 3-1 4-2 4 0-2-3-3-2-3-2-4-3 4-2-3-4-3-2 3-1 5-1 0-4-3-2-2-3-2-3-1-4 0-4 4-1z" data-name="Bihar"/>
+        <path id="st-ct" class="st" d="M203 266l4 2 1 4 3 2 2 4 4-1-1 4 2 4 1 4 4 3 1 4-3 3-3 2-1 4-4 2-3 2-2 4 0 4-2 3-2 3-1 4-1 3-2 4-4-1-5 1-3 2-3 3-3 3 0 4 2 4 0 4 0 4 4 1 2 4-5-1-4-1-3-2-4-1-2 3 4 3 0 4 2 4 1 3 1 4 0 4-2 3-3 2-2 4-3 3-3 2-2 3-1 4-1 3-5 0-3 1-1-5-3-4-2-3-2-3-3-3-4 0 1-5-2-4 2-3 2-4 4 0 3-2-2-4-2-3-4-1 3-4-1-4 1-4 1-4-2-3 1-5-2-4 1-3 3-3 2-4-1-5 3-2 0-4 2-3 3-3 1-4 4-2 4 0 3-2 2-4 2-3 2-3 3-2 2-4-3-3-3-3-4 0 0-4-2-4 4 2 4-1 4 0 5 1 4-1 3-2 4 1 4 0 3-4z" data-name="Chhattisgarh"/>
+        <path id="st-dd" class="st" d="M-62 342l1-4 4 2 0 3-4 0z" data-name="Daman & Diu"/>
+        <path id="st-dl" class="st" d="M74 155l2 3 1 5-3 3-3-3-4-1 2-4 3-4z" data-name="Delhi"/>
+        <path id="st-dn" class="st" d="M-9 357l-4 0-2-4 4-1-1 3z" data-name="Dadra & Nagar Haveli"/>
+        <path id="st-ga" class="st" d="M1 453l4-1 2 3 4 0 2 3 1 3 0 4-1 4-3 2-2-2-2-5-2-3-1-4z" data-name="Goa"/>
+        <path id="st-gj" class="st" d="M-107 273l-4-2 5 0-4 0-2 4 0-4zM-52 253l4 1 3-1 4 1 4 1 3-2 4 2 3 1 3 3 4-1 3 2 3 0 5 0-2 4 2 2 4 1 0 4 2 4 3 2 0 5 5 0 3 2 2 3 4 2 1 4 2 3-2 4-3 2 1 3-4 1 1 4 0 4-3 3-3 2 1 3 3 3 4 0-3 1-2 3-3 2-4 3 4 2 3 4-2 3-3 4-3-2-2 4-1 3-3 3-3 1-1-4-3 1-2 3-1-4 2-4-1-4-1-4-1-4-3-4 1-4-1-4 4-2-4 0-2-4 0-4 1-4 4 0-3-2-4 0-2 3-1 4-1 5 1 4-2 4-2 4-4 3-3 1-5 2-3 2-4 2-3 1-4-1 1-4-4 1-4 2-4-2-3-3-3-3-3-3-3-4 0-3-4-1-3-3-4-3-3-3-3-4 1-4 4 0 2 3 3-1 4-1 4-1 3-2 4-2 2-4 3-3 2-4-4 3-3 0-4 1-4 1-3 2-4-1-5-1-4-2-3-2-4-3-1-4-3-3 0-4 3-3-2-4 4 0 1-5 1-3 4 2 4-1 5 0 4 0 4 2 4 0 3-3 4-1 5-2 0 4 4 1 3-2 4-2-2-3 2-4z" data-name="Gujarat"/>
+        <path id="st-hp" class="st suspended" d="M47 64l1-4-3-3 5-1 3-3 3-3 4-1 4 0 4 2 2 3 4 2 3 2 3-1 4-3 3 3 2 4 3 3 3-2 4-2-1 4 3 3 0 4 3 3 3 4 0 3 0 4 0 4 1 4 2 4 2 3-4-2-3-1-4 0-5 0-4 1-3 2-1 3-2 4 0 4 2 3-4 3-4 0-4-1-3-2 0-4-2-3-4-2-3-2-1-3-1-4-3-2-5 1-2-3-2-4-2-4-1-4-4-3-2-4 4-2 3-3z" data-name="Himachal Pradesh" data-state="hp" tabindex="-1"/>
+        <path id="st-hr" class="st" d="M66 105l3 2 4 3 0 4 3 2 4 0 3 3-3 3-2 3-3 3-2 4-1 4 1 4 0 5 0 4 2 4-4 2-2 4-1 4 4 0 3 2 4 0 2 3 0 5 0 4-4 2-4 2-3 2-1-3 0-4 1-4-4 0-2 3-5-1-3-3 1 4-3 1-4 3-1-4 1-4-1-3-4-2-3-3-2-3-1-5 0-3-3-4-1-3-4 1-3-1-3-3-4 1-1-3 0-4-2-3 1-3 3-2 4 0 3 3 4 1-1 3 4 0 4-2 4-1 4 2 3-1 3-2 0-5 3-2 3 2 2-3 3-4 4-1-1-4-1-4-1-4z" data-name="Haryana"/>
+        <path id="st-jh" class="st active" d="M207 257l4 0 4-1 5 2 3-2 2 4 4-1 3-1 4 1 4 0 4-2 4-1 4-1 1-4 4 0 4 1 4 3 1 4 5-3 4-1 4-1 3-2 2-3 0-5 3-2 3-2 5-2 2 3 2 4 2 3-3 3 1 4-1 3-2 4-1 3-4 2-5 1 0 4-5 1-3-1-2 4-4 0-4 2-2 3-4 0-4 0-3 4 2 3 4 1 4 2 4 1-1 4 3 2 3 3 1 4 3 3-4 1-4-1-4-2-4-2-4 0 2 3-1 5-3 3-3-2-4-1-4 0-3 1-3-1 1-3 0-5-5 0-3 1-4 0-4 2-4-3-3-2 4-2 3-3 1-4-4-2-2-2 0-4-2-4 0-4-5 1-1-4-3-3-2-3-3-2 1-4 1-5z" data-name="Jharkhand" data-state="jh" tabindex="-1"/>
+        <path id="st-jk" class="st" d="M58 42l-3-3-1-3-3-3-4-2-2-4-3-2-3-2 0-4-2-3-2-4-1-3-4 0-5 0-3-3-1-3-4-2-4 1-4 2-1 4-5 0-2 4-3 2-3 3 1 5 0 4 2 4 0 4 1 4 0 4-1 4 1 4 3 4 3 1 4 2 4 2 4 2 4-2 1 4 1 3 4 1 4 0 3 2 4 1 5-2 3-2 2-4-2-4 3-2 4-3 3-3 4-1 3 0 0-4-4-3z" data-name="Jammu & Kashmir"/>
+        <path id="st-ka" class="st active" d="M10 455l4-2 2-4 1-4-1-4-2-4 4-3 3 0 4-3 3-3 4 0 3-1 4 0 4-1-1-5-1-3 4-1 4 1 4 0 4 0 0-4 2-3 3-2 4-1 3-3 0-5 4-1 2-3 3-2 2 4 3 3 0 4-2 3-1 4 3 2-2 4-3 3 2 4 0 5-1 3-2 4 2 2 1 4 0 4-4 1-4 1-1 4-1 5 1 4 2 4-1 3-4 0-1 3-2 4 1 4 2 3 3 3 4-2 3 2 0 4-5 0-2-2 0 4-1 4 4-2 4 0 2 3 3-1 4-2 3-2 4 2-1 4 3 1 3 3 2 3 1 4-2 4-3 2-4 1-4 0-3 2-3 1 0 4-1 4 3 3 0 4-4 1-2 3-3 0-3 1-4-1-2 3-4 1-4-2-3-1-3-3-3-1-4-1-3-3-3-2-3-3 0-3-3-2-4-3-3-1-3-3-1-5-1-4 0-4-1-5-1-4-2-4-2-4-1-4-2-4-3-3 3-3 1-4 1-4-2-4 0-4z" data-name="Karnataka" data-state="ka" tabindex="-1"/>
+        <path id="st-kl" class="st active" d="M26 518l4 1 3 2 3 3 1 3 3 3 4 2 2 3 4 0 4 2 3 3-3 4 4 2 3 3 3 1 1 4-1 3 4 2-1 4-1 4 1 4 3 1 4-3 2 3 0 4-1 4-1 4 4 1-1 5-1 3-2 4 1 4 0 5-1 4-4 1-3-4-3-4-3-3-1-4-2-4-2-4-1-5 0-4 2 3 0 4 0-4 0-4-2-4-3-3-1-5-2-4-2-4-1-4-1-4-2-5-3-3-2-4-3-3-2-3-2-4-2-4-2-4z" data-name="Kerala" data-state="kl" tabindex="-1"/>
+        <path id="st-la" class="st" d="M139 -11l-3-3-3-3-5 0-4-2-4-2-4-1-2 3-3 0-5 0-4 2-4 1-3 3-3 2-5 1-4 2-4-2-2-4-3-2-5 0-3-2-1-5-2-3-4-2-3-3-4-2-4-2-4-3-2-3-3-4-3-3-4-1-4 1-4-2-4 0-4 2-4 2-4 1-3-2 1 5-4 0-5 0-4 0-3 3-3 3-3 3-3 3-2 4 0 4 3 3 4-1 4 2 1 4 4 2 4 0 4 1-1 4 1 4 4 1 3 3 5 1 4-1 2 4 4 3 4 1 3-2 2 4 1 3 3 2 1 5 1 3 4 1 2 4 3 3 3 3 4 2-1 4 3 1 4 2 3 4 3 3 3 3 4 2 3 2 3-2 3-2 2 3 3 3 2 4 3-2 4-2 0 4 4 0 4-2 2 3 2 4 4 0 2-3 4-1 4-2-1-4-2-4 0-4-3-2-4-2-3-4 0-4 3-3-2-3-1-5 5-1 4 1 3-3 1-4-1-4 4-1 2-3 4-2 1-4 2-4 0-5 2-4 0-4z" data-name="Ladakh"/>
+        <path id="st-mh" class="st" d="M11 315l3 0 4 1 0 4 4 2 4 1 4 2 3 3 4 0 4 0 5 0 4 1 3 2 0 4 5 0 3-2 2-4 3-3 3-3 4-2 4 0 3-1 3 3-3 3 3 3 3 0 4 0 4-2 3-3 4 2 4 1 4-1 3-3 4-1 4 0 3 2 4 0 4 1 4 0 4-2 3 4 2 2 1 4-2 3 2 4 1 4 0 5 0 4-4 1 3 3-1 4-2 3 5 2 2 3 3 2-2 4-4-1-4 2-2 4-1 4 0 4-4 0-3-2 0-4 0-4 1-3-2-4-4-2-3 1-5-1-3 2-4-2-3-3-3-1-4-1-3-2-1 4-1 4-2 4-3 2-4-1 0 5 0 4-1 4-2 4-3 3-1 3-3-3-3 3-3 2-3 3-2 3-2 3-5 0-3 3 0 5-4 1-4 0-3-2-4-1 0 5 1 3-4 4-3 0-3 2-3-2-3 2-4 3-2 3-5 0-3 2 2 4 3 3-1 4-2 4-4 1-3 3-3-3-4 0-2-3-2-3-1-4-1-4-2-3 0-4 0-4-1-5-1-4 0-4-2-4-1-4-1-4-1-3-1-5 0-4-1-4 2-3 0-4-3 2-1-3 0-5 0-4-2-3-1-4 1-4 3-3 3 0 4 1 3-2 2-4 1-4 0-4 3 3 4-1 3-2 0-4-4-3-2-3 4 0 3-3 2-4 4 0-4-1-4 1 0-5 1-4 4-1z" data-name="Maharashtra"/>
+        <path id="st-ml" class="st" d="M340 233l1-3 2-4 3-2 4-1 4 0 4 1 4 0 3 2 3 3 3-2 4-1 2-4 4-2 3 2 4 0 2 3-2 4 4 0 3 2 4 2 1 4 1 4-3 2-4 2-3-1-4-2-5 0-4 0-4 1-4-2-5 1-4 0-4 0-4 1-5-2-4-1-4-1 0-4z" data-name="Meghalaya"/>
+        <path id="st-mn" class="st" d="M415 239l4 1 2-4 2-3 4-1 4 2 4-1 3-3 1 4 0 5 2 3 0 3-2 4-2 3-2 4-1 4-2 3-1 5-2 4-3-2-4 0-4-2-4 0-4 0-3-2-2-4 1-4 2-5 1-3 2-3 2-4 1-4z" data-name="Manipur"/>
+        <path id="st-mp" class="st" d="M96 203l4 0 4 2 4 0 3 2 2 3 1 3-1 4-1 4-2 3-2 4-1 4-4 0-4 3 0 4 1 4-2 3-3 3 2 4-1 4 3 3 4 0 3 3 4 1 2-4-1-4-4-2 1-4-3-3-1-4-2-4 3-3 3 0 3-3 1 4-4 2 4-1-2 4 3-2 2 3 4-1-1-3 4 0-1 4 3-1 4 0 3-2 3-3 3-1 3 3 0 4 3 2 2-3 4 2 2-3-1 3 4 3 4 0 1-4 4-1 4 0 3 2 3 3 3 2 4 2 2 3 5-1 4 1-1 4 1 4-1 4 2 3-3 3-4 1-5 0-4-1-4 1-3-2 0 3-2 4 4 1 3 1 3 3 2 3-1 3-4 2-1 3-2 4-3 3-4 2-4 0-3 2-2 4-1 4-3 3-1 4-2 3 0 5-4 0-3-2-3-3-4 2-4 0-4-1-4-2-4-1-4 3-3 1-4 1-4-1-4-2-4 2-3 2-4 1-4 0-4-2 3-1-1-4-4-1-5 1-4 2-3 1-1 4-2 3-3 1-3 3-4-1-1-4-3-2-4 0-5 0-4 0-4-1-3-3-4-1-4-1-3-3 0-4-4 0-4-1 0-4 2-4-3-3 4-3 3-1 2-4-3-4 3-2 4-2-3-3 2-3 3-2 3-2 0-5 1-4-1-4-3-2 2-4-2-3 1-5 2 3-1-3 4-2 2-2 4-1-1 3-2 4 4 1 4 0 4-2 1 4 2 3-4 2 2 3 0 4-2 2-5-1 1 3 3 3 4-3 3-3 3-2 1-4 4 2 3 1 3-2 3 3 1-4-1-4 4-1 0-4-3-1 1-4 2-4 4-1 4 0-1-4-4-1-4 1-4-1-4-1-2-4 0-4 2-3 3-2 3-3 3-3 4-1 3-3 4-1 3-3 3-2 4-2 3-2z" data-name="Madhya Pradesh"/>
+        <path id="st-mz" class="st" d="M391 263l4 2 2-2 3-3 4 0 2 3 0 4 4 1 3 2 1 5 0 4 0 4-1 4-1 4-4 0 0 3-1 4 1 4 2 4-2 4-2 3-2 3-3-3-4 2 0-4 0-5-1-4-1-4-2-4 0-4 0-3-1-4-1-5-1-4 1-4 1-4z" data-name="Mizoram"/>
+        <path id="st-nl" class="st" d="M451 198l1 4 0 4-2 3-1 4 1 4 1 4-2 3-1 4-2 3-3 3-4 1 0-4-4 2-4 1-4-2-4 1-2 4-2 3-3-1-2-4 1-4 3-3 2-3 4 1 2-4 1-4 3-3 1-4 4-1 2-3 5-2 3-3 3-1z" data-name="Nagaland"/>
+        <path id="st-or" class="st" d="M218 303l3 3 4 1 4-2 4 0 3 0 4 1-1 5 3 2 3-1 4 0 3 1 4 2 3-3 0-4-1-4 4 0 4 2 3 1 3 2 4 3 4 1 0 4 4-2 2 4 3 2-2 4-4 0-4 3-2 3 0 5 2 4-3 3 4 0-4 3-2 4-2 4-3 2-3 3-4 3-4 1-5 1-4 2-4 2-3 3-4 3-3 3-3 2-5 2-2 3-3 2-4 1-4-2-2-3-3-3-2 3-4 0 1 4-3 1-4 2 0 4-2 3-4-2-2 3-3-2-4 1 0 4-2 4-4-2-4 2-4 2-3 2-1-5 1-4 3-3 3-2 3-3 2-3 2-3 2-3-1-3 0-4-2-4-1-5-3-4-1-3 4 0 4 1 2 3 4-1 4 0-3-2-4-3 0-4 0-4-1-4 0-4 4-3 2-3 4-1 4 0 4-1 1-3 2-4 2-3 1-4 1-4 1-4 4-3 4-2 1-3z" data-name="Odisha"/>
+        <path id="st-pb" class="st" d="M47 64l1 4-3 3-3 2 2 4 3 3 2 4 1 4 3 4 1 3 3-3 2 4 3 2 0 3 3 3 2 4 1 4 0 5-4 1-3 3 1 4-4-2-3 1-1 5-2 3-3 2-4-2-4 2-3-2-3 4-2-4-2-3-4-1-5 0-4 0-4 0-4 0-4-1 1-4-1-4 2-4 3-3 2-3 2-3 4-3 3-3-4-1 1-4 2-4-2-4 0-4 3-3 4-2 3-1 4-2 3-3 4-2 4-2 2-3z" data-name="Punjab"/>
+        <path id="st-rj" class="st active" d="M7 123l-2 4 5 1 4 1 4 0 0 5 2 4-1 4 4 1 4 0 3 3 4-1 3 3 2 4 0 4 1 4 3 3 2 3 4 2 2 3-2 3 0 5 4 1 0-4 4-2 3-2 1 4 2-3 3-2 4 1-1 5-1 3 2 3 2-3 4 0 1 4 2 4 3 3 2 3-3 3 4 1-4 3-1 3 4-1 3-2 4 0 4-1 0 4-3 2-3 2-3 3-4 2-3 1-4 3-4 1-3 3-2 3-4 2-2 3 1 4 1 4 4 2 4 0 4 0 3-3 1 4 1 3-4 0-4 1-3 2-1 5 3 1 2 4-2 2-2 4 1 4-4-1-3 0-5-2-3-2-1 4-3 3-2 3-3 1-4 2-2-3 4-3 3-1 0-3-1-5 3-2-1-3-4-2-4 1-4-1-2-3 4 0-3-3-3 2-4 0 2 4-4-1-2 4 3 3-2 4 3 3 1 4-1 4 0 4-3 2-4 2-2 4 4 1-3 3-4 0-3-1-4-3-3-2-3-2-2-4-3-2-3-2 1-4-4-1-2-3 2-3-2-4-3 3-4 0-2-3-4 2-2-3-3-2-4-2-4 1-4 0-4 0-4 1-4-2-2-4-2-4-1-4-3-3-1-4-1-4-4 0-4-1-2-4-1-4 2-4 0-5-2-3-5 0-4-2-4-2 1-5 1-4 3-3 3-3 3-4 2-4 2-4 3-3 5 0 2 4 2 3 5 0 4-2 4-1 5 0 4-2 2-3 2-4 4-3 1-4 2-4 3-3 4-2 4-2 3-4 2-3 2-4 2-5 1-4 2-4 4-1 4-2z" data-name="Rajasthan" data-state="rj" tabindex="-1"/>
+        <path id="st-sk" class="st" d="M314 173l4 2 1 4-1 4-1 4 2 4-2 4-5 0-3 2-4-1-3-1-1-5 1-4 2-4-1-4 4-2 4-1z" data-name="Sikkim"/>
+        <path id="st-tg" class="st" d="M82 397l0-3 4-3 2-5 0-3 0-4 1-3 5 0 2-4 2-4 1-5 3 0 5 1 3 3 4 3 3 1 3-2 4 0 4-1 3 3 2 4-2 3 1 4 0 4 4 2 3 0 3 2 4 2 3 3 1 3 3 2 1 5 2 3 4 0 4-1 4 0-2 4-1 4-3 2-4 2-3 2-3 2-5 1-4 1 3 3-4 1-3-4-4 1 0 5-3 2-4-1-4 1-4 2-3 2 0 5-4 0-2 3-3 2-4-1-4 0-3 2-3 3-5-1-4 0-4-2 0-4 2-3-5-2 1-4 1-4 0-3 1-4-2-4 3-3 3-2-4-2 2-4 1-4-1-4 0-4z" data-name="Telangana"/>
+        <path id="st-tn" class="st suspended" d="M96 519l4 2 3-3 2-4 2-3 4 0 4 1 3-3 4-2 4-1 5-1 2-3 3 0 4 2 0 3-1 5 0 4-1 5-2 4-3 4-2 3-2 3 0 4-1 4 2 5 0 4-2 3 2 4 0 5 1 4-4 2-5 0-4 1 0 4-3 4-2 3-2 4 1 4 4 1-4 1-4 1-3 1-5 1-3 3-2 4-1 4-1 5-4 1-4 3-3 2-5-1-3-3 1-3 0-5 1-4-2-4 2-3 1-4 2-3-3-2 0-4 0-4 0-4-1-3-3 1-4 0-1-5 1-4-2-4-1-4-4-3-2-4-3-2 2-3 3 0 5 0 2-3 4 0 4-1 4 1 1-3 4-1 1-4-4-1 2-4-1-4 3-3 2-3 4 0 4 2z" data-name="Tamil Nadu" data-state="tn" tabindex="-1"/>
+        <path id="st-tr" class="st" d="M388 257l2 3 1 4 0 4-1 4 0 3-4 2-2 4-3 3 0 4-2 3-3 1-2-4-3 0-1-4-1-3-2-4 1-3 1-5 3-3 4 1 3-2 4-1 1-3 3-1z" data-name="Tripura"/>
+        <path id="st-up" class="st" d="M82 118l4 1 4 2-2 4-2 4 0 4 4 2 2 3 3-3 3-2 4 1 2 4 4 2-1 4 3 3 5 1 3 4 3 3 5 0 4 0 3 3 3-3 3 3 3 2 4-1 3 2 3 2 3 2 4 2 2 3 4 3 3 2 4 3 5-1 3 2 4 3 4 0 3 3 4 2 4 1 3 3 3-3 4 0 4 2 2 3 1 4 2 3 3 3 3 3-3 2-4 2 2 3 0 4 1 4 3 3 4 1 3 2-2 3-3-2-4 1-4 3-3 3-3 2-3 2-4 2-1 4 0 4 3 3 1 4-3 3 0 5-2 4-2 3-4 1-4-2-3-4 2-4-1-3 1-5-4-1-3 0-4 0-3-3-4-1-2-3-4-2-4-1-4 1-1 4-4-1-3 1 0-4-4 1-4 0-4 0 2-3-1-4-5 0-3 1-2 4-3-1-4 2-1-4-3-2 0 5-4 0-2-3-3 2 2-4-3 2 3-3-1-4-4 1-3 3 0 5 1 4 3 3 0 4 4 3 0 5-2 3-4-1-3-3-3 2-2-3-1-3 0-5 0-3 2-4 1-4-2-3 3-3 4-2 4-1-1-3 3-4 2-4 1-4 1-4-3-3-2-3-3-2-4 1-4-2-3-1-4-1-5 0-4 2-3 2 1-4 4-2-3-1 2-4-1-3-4-2-2-3 0-4 1-3 3-3 0-4-1-5-2-3-1-4-2-3 0-5-2-3 0-4 0-5 0-4 1-4 2-4 3-3 2-3 2-4z" data-name="Uttar Pradesh"/>
+        <path id="st-ut" class="st" d="M116 94l2 4 3 3 2 3 4 0 4 1 3 2 4 3 0 4 4 1 3 1 4 3 4 2-2 4-3 3-3 2-3 3 0 4-2 3-1 4 0 4-3 4-1 3-2 4-3-2-4-1-5-1-3-2-3-3-3-1-4-3 2-4-3-2-4-2-2-4-4 0-3 3-4 1-3-3-2-3 1-4 2-3 2-4-4-2-3-2 4-1 0-4-2-4 1-3 2-4 3-2 4-1 4-2 3 2 4 1 3 1 2-4 2-4z" data-name="Uttarakhand"/>
+        <path id="st-wb" class="st" d="M323 313l-4 0 3 2-2-3zM316 310l0 3 5-4-5 1 3-3 0 3 2-3 2 3-2-4zM302 194l3 2 5 1 3-2 3 1 3 2 3 3 3 3 4-2 4 1 4 2 3 4-1 4-2 2-3 4 0 4-4-1-3-2-3-3-1-4-4 0 4 3-4-1-4-1-2-3-3-2 1 5-4 2-3 3-1 5 1 4 4 1 2 3 4 2 4 0 1 4 1 4-3 0-4 0-3 2-2 3-3 0-2 4-1 3 3 4 4 2 4 1 3 1 0 4 1 3-3 3-1 4 3 4 1 3 2 3 0 5 2 3-1 4 0 4-1 3-3 4-2 3-1 4-3 0-3 3-3-4 1-4-3-2-2-4 2 4 3 3-3 3-3 3-3 3-4 1-3-3-4-2-4 0-1-4-4-2 1-3-1-3-1-4-3-3-4-1 0-4-4-2-3-2-4-1-1-4 1-4 3-2 4 3 3-3 4-2 4-1 2-3 5 1 3-2 0-4 4 1 3-3 3-4 2-3 1-4-1-3 3-3-2-3-2-4 1-3 1-4 4 0 0-4-3-3-1-4 1-3 4-2 3-3 0-4-2-4 1-4-1-4-3-3z" data-name="West Bengal"/>
+        <g class="hq" aria-hidden="true">
+          <circle class="hq-pulse" cx="84" cy="512" r="5"/>
+          <circle class="hq-pulse p2" cx="84" cy="512" r="5"/>
+          <circle class="hq-dot" cx="84" cy="512" r="5.5"/>
+          <g class="hq-label" transform="translate(96,478)">
+            <rect width="150" height="24" rx="12"/>
+            <text x="75" y="16" text-anchor="middle">Head Office · Bengaluru</text>
+          </g>
+          <path d="M92 496 L99 502 L88 509 Z" fill="var(--primary)"/>
+        </g>
+        </svg>
+        <div class="map-tip" id="mapTip"></div>
+        <div class="map-legend">
+          <span><i class="lg-active"></i>Active</span>
+          <span><i class="lg-susp"></i>Past work</span>
+          <span><i class="lg-hq"></i>Head Office</span>
+        </div>
+      </div>
+      <div class="state-list" id="stateList">
+      <div class="state-card active" data-state="rj" tabindex="0">
+        <div class="state-badge"><svg viewBox="-112 90 233 233" aria-hidden="true"><path d="M7 123l-2 4 5 1 4 1 4 0 0 5 2 4-1 4 4 1 4 0 3 3 4-1 3 3 2 4 0 4 1 4 3 3 2 3 4 2 2 3-2 3 0 5 4 1 0-4 4-2 3-2 1 4 2-3 3-2 4 1-1 5-1 3 2 3 2-3 4 0 1 4 2 4 3 3 2 3-3 3 4 1-4 3-1 3 4-1 3-2 4 0 4-1 0 4-3 2-3 2-3 3-4 2-3 1-4 3-4 1-3 3-2 3-4 2-2 3 1 4 1 4 4 2 4 0 4 0 3-3 1 4 1 3-4 0-4 1-3 2-1 5 3 1 2 4-2 2-2 4 1 4-4-1-3 0-5-2-3-2-1 4-3 3-2 3-3 1-4 2-2-3 4-3 3-1 0-3-1-5 3-2-1-3-4-2-4 1-4-1-2-3 4 0-3-3-3 2-4 0 2 4-4-1-2 4 3 3-2 4 3 3 1 4-1 4 0 4-3 2-4 2-2 4 4 1-3 3-4 0-3-1-4-3-3-2-3-2-2-4-3-2-3-2 1-4-4-1-2-3 2-3-2-4-3 3-4 0-2-3-4 2-2-3-3-2-4-2-4 1-4 0-4 0-4 1-4-2-2-4-2-4-1-4-3-3-1-4-1-4-4 0-4-1-2-4-1-4 2-4 0-5-2-3-5 0-4-2-4-2 1-5 1-4 3-3 3-3 3-4 2-4 2-4 3-3 5 0 2 4 2 3 5 0 4-2 4-1 5 0 4-2 2-3 2-4 4-3 1-4 2-4 3-3 4-2 4-2 3-4 2-3 2-4 2-5 1-4 2-4 4-1 4-2z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Rajasthan</h3><span class="status on">Active</span></div>
+          <div class="pills"><span class="pill on">Braj Basha</span><span class="pill on">Dhundari</span><span class="pill on">Hadoti</span><span class="pill on">Mewari</span><span class="pill on">Shekawati</span><span class="pills-label">Past work</span><span class="pill off">Bagri</span><span class="pill off">Marwari</span><span class="pill off">Mewati</span><span class="pill off">Od Rajput</span><span class="pill off">Wagri</span></div>
+        </div>
+      </div>
+      <div class="state-card active" data-state="jh" tabindex="0">
+        <div class="state-badge"><svg viewBox="189 214 125 125" aria-hidden="true"><path d="M207 257l4 0 4-1 5 2 3-2 2 4 4-1 3-1 4 1 4 0 4-2 4-1 4-1 1-4 4 0 4 1 4 3 1 4 5-3 4-1 4-1 3-2 2-3 0-5 3-2 3-2 5-2 2 3 2 4 2 3-3 3 1 4-1 3-2 4-1 3-4 2-5 1 0 4-5 1-3-1-2 4-4 0-4 2-2 3-4 0-4 0-3 4 2 3 4 1 4 2 4 1-1 4 3 2 3 3 1 4 3 3-4 1-4-1-4-2-4-2-4 0 2 3-1 5-3 3-3-2-4-1-4 0-3 1-3-1 1-3 0-5-5 0-3 1-4 0-4 2-4-3-3-2 4-2 3-3 1-4-4-2-2-2 0-4-2-4 0-4-5 1-1-4-3-3-2-3-3-2 1-4 1-5z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Jharkhand</h3><span class="status on">Active</span></div>
+          <div class="pills"><span class="pill on">Asuri</span><span class="pill on">Birhor</span><span class="pill on">Birjia</span></div>
+        </div>
+      </div>
+      <div class="state-card active" data-state="ka" tabindex="0">
+        <div class="state-badge"><svg viewBox="-39 373 189 189" aria-hidden="true"><path d="M10 455l4-2 2-4 1-4-1-4-2-4 4-3 3 0 4-3 3-3 4 0 3-1 4 0 4-1-1-5-1-3 4-1 4 1 4 0 4 0 0-4 2-3 3-2 4-1 3-3 0-5 4-1 2-3 3-2 2 4 3 3 0 4-2 3-1 4 3 2-2 4-3 3 2 4 0 5-1 3-2 4 2 2 1 4 0 4-4 1-4 1-1 4-1 5 1 4 2 4-1 3-4 0-1 3-2 4 1 4 2 3 3 3 4-2 3 2 0 4-5 0-2-2 0 4-1 4 4-2 4 0 2 3 3-1 4-2 3-2 4 2-1 4 3 1 3 3 2 3 1 4-2 4-3 2-4 1-4 0-3 2-3 1 0 4-1 4 3 3 0 4-4 1-2 3-3 0-3 1-4-1-2 3-4 1-4-2-3-1-3-3-3-1-4-1-3-3-3-2-3-3 0-3-3-2-4-3-3-1-3-3-1-5-1-4 0-4-1-5-1-4-2-4-2-4-1-4-2-4-3-3 3-3 1-4 1-4-2-4 0-4z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Karnataka</h3><span class="status on">Active</span></div>
+          <div class="pills"><span class="pill on">Betta Kurumba</span></div>
+        </div>
+      </div>
+      <div class="state-card active" data-state="kl" tabindex="0">
+        <div class="state-badge"><svg viewBox="-8 505 119 119" aria-hidden="true"><path d="M26 518l4 1 3 2 3 3 1 3 3 3 4 2 2 3 4 0 4 2 3 3-3 4 4 2 3 3 3 1 1 4-1 3 4 2-1 4-1 4 1 4 3 1 4-3 2 3 0 4-1 4-1 4 4 1-1 5-1 3-2 4 1 4 0 5-1 4-4 1-3-4-3-4-3-3-1-4-2-4-2-4-1-5 0-4 2 3 0 4 0-4 0-4-2-4-3-3-1-5-2-4-2-4-1-4-1-4-2-5-3-3-2-4-3-3-2-3-2-4-2-4-2-4z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Kerala</h3><span class="status on">Active</span></div>
+          <div class="pills"><span class="pill on">Ravula</span><span class="pills-label">Past work</span><span class="pill off">Mannan</span><span class="pill off">Muthuvan</span><span class="pill off">Paniya</span></div>
+        </div>
+      </div>
+      <div class="state-card suspended" data-state="hp" tabindex="0">
+        <div class="state-badge"><svg viewBox="31 38 91 91" aria-hidden="true"><path d="M47 64l1-4-3-3 5-1 3-3 3-3 4-1 4 0 4 2 2 3 4 2 3 2 3-1 4-3 3 3 2 4 3 3 3-2 4-2-1 4 3 3 0 4 3 3 3 4 0 3 0 4 0 4 1 4 2 4 2 3-4-2-3-1-4 0-5 0-4 1-3 2-1 3-2 4 0 4 2 3-4 3-4 0-4-1-3-2 0-4-2-3-4-2-3-2-1-3-1-4-3-2-5 1-2-3-2-4-2-4-1-4-4-3-2-4 4-2 3-3z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Himachal Pradesh</h3><span class="status off">Past work</span></div>
+          <div class="pills"><span class="pill off">Kinnauri</span></div>
+        </div>
+      </div>
+      <div class="state-card suspended" data-state="tn" tabindex="0">
+        <div class="state-badge"><svg viewBox="24 486 147 147" aria-hidden="true"><path d="M96 519l4 2 3-3 2-4 2-3 4 0 4 1 3-3 4-2 4-1 5-1 2-3 3 0 4 2 0 3-1 5 0 4-1 5-2 4-3 4-2 3-2 3 0 4-1 4 2 5 0 4-2 3 2 4 0 5 1 4-4 2-5 0-4 1 0 4-3 4-2 3-2 4 1 4 4 1-4 1-4 1-3 1-5 1-3 3-2 4-1 4-1 5-4 1-4 3-3 2-5-1-3-3 1-3 0-5 1-4-2-4 2-3 1-4 2-3-3-2 0-4 0-4 0-4-1-3-3 1-4 0-1-5 1-4-2-4-1-4-4-3-2-4-3-2 2-3 3 0 5 0 2-3 4 0 4-1 4 1 1-3 4-1 1-4-4-1 2-4-1-4 3-3 2-3 4 0 4 2z"/></svg></div>
+        <div>
+          <div class="state-top"><h3>Tamil Nadu</h3><span class="status off">Past work</span></div>
+          <div class="pills"><span class="pill off">Moundaden Chetti</span></div>
+        </div>
+      </div>
+      </div>
+      <div class="swipe-hint" aria-hidden="true">Swipe to see all states
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const card=document.getElementById('mapCard'), tip=document.getElementById('mapTip');
+  const setHot=(code,on)=>{
+    document.querySelectorAll('[data-state="'+code+'"]').forEach(el=>el.classList.toggle('is-hot',on));
+    card.classList.toggle('has-hot',on);
+  };
+  document.querySelectorAll('.state-card').forEach(c=>{
+    const code=c.dataset.state;
+    ['mouseenter','focus'].forEach(e=>c.addEventListener(e,()=>setHot(code,true)));
+    ['mouseleave','blur'].forEach(e=>c.addEventListener(e,()=>setHot(code,false)));
+  });
+  card.querySelectorAll('path.st').forEach(p=>{
+    p.addEventListener('mousemove',ev=>{
+      const r=card.getBoundingClientRect();
+      const st=p.classList.contains('active')?'Active':p.classList.contains('suspended')?'Past work':'';
+      tip.innerHTML=p.dataset.name+(st?'<span>'+st+'</span>':'');
+      tip.style.left=(ev.clientX-r.left)+'px'; tip.style.top=(ev.clientY-r.top)+'px';
+      tip.classList.add('show');
+    });
+    p.addEventListener('mouseleave',()=>tip.classList.remove('show'));
+    if(p.dataset.state){
+      p.addEventListener('mouseenter',()=>setHot(p.dataset.state,true));
+      p.addEventListener('mouseleave',()=>setHot(p.dataset.state,false));
+      p.addEventListener('click',()=>{
+        const c=document.querySelector('.state-card[data-state="'+p.dataset.state+'"]'); if(!c) return;
+        const mobile=window.matchMedia('(max-width:960px)').matches;
+        if(mobile){ const list=c.parentElement; list.scrollTo({left:c.offsetLeft-(list.clientWidth-c.clientWidth)/2, behavior:'smooth'}); }
+        else { c.scrollIntoView({behavior:'smooth',block:'center'}); }
+        document.querySelectorAll('.is-hot').forEach(e=>e.classList.remove('is-hot'));
+        setHot(p.dataset.state,true);
+      });
+    }
+  });
+  // touch: tapping a card highlights its state (no hover on phones)
+  document.querySelectorAll('.state-card').forEach(c=>c.addEventListener('click',()=>{
+    document.querySelectorAll('.is-hot').forEach(e=>e.classList.remove('is-hot'));
+    setHot(c.dataset.state,true);
+  }));
+  // mobile: highlight whichever card is centred in the swipe strip
+  const list=document.getElementById('stateList');
+  if('IntersectionObserver' in window){
+    const mq=window.matchMedia('(max-width:960px)');
+    const cio=new IntersectionObserver(es=>{ if(!mq.matches) return; es.forEach(e=>{ if(e.isIntersecting){ document.querySelectorAll('.is-hot').forEach(x=>x.classList.remove('is-hot')); setHot(e.target.dataset.state,true);} }); },{root:list, threshold:.75});
+    document.querySelectorAll('.state-card').forEach(c=>cio.observe(c));
+    // reveal: light states up one after another
+    const order=['kl','ka','tn','jh','rj','hp'];
+    order.forEach((k,i)=>{const el=document.getElementById('st-'+k); if(el) el.style.setProperty('--d',(i*0.18)+'s');});
+    const rio=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ card.classList.add('in'); rio.disconnect(); } }),{threshold:.35});
+    rio.observe(card);
+  } else { card.classList.add('in'); }
+})();
+</script>
+</body></html>
