@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#123B78;--navy-d:#0D2A57;--green:#4AA54E;--green-d:#357A39;--green-l:#E9F5EA;--ink:#1E2430;--soft:#5C5F66;--border:#E6E6EA}
+*{box-sizing:border-box}
+html,body{margin:0;background:transparent;font-family:Inter,sans-serif;color:var(--ink)}
+.wrap{max-width:1160px;margin:0 auto;padding:8px 4px 24px}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:24px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{appearance:none;cursor:pointer;padding:11px 20px;border-radius:999px;background:#fff;border:1px solid var(--border);color:var(--navy);font:600 15px Inter,sans-serif;transition:.18s}
+.chip b{font-weight:700;color:var(--green-d);margin-left:6px}
+.chip:hover{border-color:var(--green)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on b{color:#9AD99D}
+.chip:focus-visible,.card:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.count{font:600 14px Inter,sans-serif;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .22s,box-shadow .22s,border-color .22s}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(13,42,87,.16);border-color:var(--green)}
+.ph{height:230px;position:relative;background:#C9D6EA;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.05)}
+.tag,.st{position:absolute;left:16px;font:700 12px Inter,sans-serif;padding:6px 12px;border-radius:999px;max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{top:16px;background:#fff;color:var(--navy)}
+.st{bottom:16px;background:var(--green-d);color:#fff}
+.bd{padding:24px 24px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.bd h3{margin:0;font:700 23px 'Plus Jakarta Sans',sans-serif;color:var(--navy)}
+.rg{margin:0;font:600 13px Inter,sans-serif;color:var(--green-d)}
+.sm{margin:0;font-size:15px;line-height:1.6;color:var(--soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ft{margin-top:auto;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font:600 15px Inter,sans-serif;color:var(--navy)}
+.ar{width:38px;height:38px;border-radius:50%;background:var(--green-l);color:var(--green-d);display:flex;align-items:center;justify-content:center;font-size:18px;transition:.2s}
+.card:hover .ar{background:var(--green-d);color:#fff}
+.msg{padding:48px 0;text-align:center;color:var(--soft);font:600 16px Inter,sans-serif}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+@media(max-width:620px){
+ .grid{grid-template-columns:1fr;gap:16px}
+ .bar{flex-direction:column;align-items:flex-start;gap:10px}
+ .chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px}
+ .chip{flex:none;padding:10px 16px;font-size:14px}
+ .ph{height:180px}.bd{padding:18px 18px 14px}.bd h3{font-size:20px}.sm{font-size:14.5px}
+}
+@media(prefers-reduced-motion:reduce){.card,.ph img,.ar{transition:none}.card:hover{transform:none}}
+</style></head>
+<body>
+<div class="wrap">
+ <div class="bar"><div class="chips" id="chips" role="group" aria-label="Filter by state"></div><span class="count" id="count" aria-live="polite"></span></div>
+ <div class="grid" id="grid"></div>
+ <div class="msg" id="msg">Loading communities…</div>
+</div>
+<script>
+(function(){
+ // ---- configuration -------------------------------------------------
+ var FALLBACK_SITE = 'https://5297706.wixstudio.com/itnrm';
+ var data = [], active = 'All';
+ function siteBase(){
+  try{ var r = document.referrer || ''; var i = r.indexOf('/communities'); if(i>0) return r.slice(0,i); }catch(e){}
+  return FALLBACK_SITE;
+ }
+ var BASE = siteBase();
+ var FEED = BASE + '/_functions/communities';
+ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function img(id){return id?('https://static.wixstatic.com/media/'+id+'/v1/fill/w_720,h_480,al_c,q_80,enc_auto/photo.jpg'):''}
+ function chips(){
+  var states = []; data.forEach(function(d){ if(d.state && states.indexOf(d.state)<0) states.push(d.state); });
+  states.sort();
+  var list = ['All'].concat(states), el = document.getElementById('chips');
+  el.innerHTML = list.map(function(s){
+   var n = s==='All'?data.length:data.filter(function(d){return d.state===s}).length;
+   return '<button type="button" class="chip'+(s===active?' on':'')+'" data-s="'+esc(s)+'" aria-pressed="'+(s===active)+'">'+esc(s)+'<b>'+n+'</b></button>';
+  }).join('');
+ }
+ function cards(){
+  var items = active==='All'?data:data.filter(function(d){return d.state===active});
+  document.getElementById('count').textContent = 'Showing '+items.length+' communit'+(items.length===1?'y':'ies');
+  document.getElementById('grid').innerHTML = items.map(function(d){
+   var im = img(d.imageId);
+   return '<a class="card" href="'+esc(BASE+'/communities/'+d.slug)+'" data-slug="'+esc(d.slug)+'" target="_blank">'+
+    '<div class="ph">'+(im?'<img loading="lazy" alt="" src="'+im+'">':'')+
+    (d.classification?'<span class="tag">'+esc(d.classification)+'</span>':'')+
+    (d.state?'<span class="st">'+esc(d.state)+'</span>':'')+'</div>'+
+    '<div class="bd"><h3>'+esc(d.name)+'</h3>'+(d.region?'<p class="rg">📍 '+esc(d.region)+'</p>':'')+
+    '<p class="sm">'+esc(d.summary)+'</p>'+
+    '<div class="ft"><span>Read more</span><span class="ar" aria-hidden="true">→</span></div></div></a>';
+  }).join('');
+ }
+ function render(){ chips(); cards(); document.getElementById('msg').style.display = data.length?'none':'block'; }
+ document.getElementById('chips').addEventListener('click',function(e){
+  var b = e.target.closest('.chip'); if(!b) return; active = b.getAttribute('data-s'); render();
+ });
+ document.getElementById('grid').addEventListener('click',function(e){
+  var a = e.target.closest('a.card'); if(!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  e.preventDefault(); window.parent.postMessage({type:'openCommunity',slug:a.getAttribute('data-slug')},'*');
+ });
+ fetch(FEED).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(j){
+  data = j; if(!data.length){ document.getElementById('msg').textContent='No communities to show yet.'; }
+  render();
+ }).catch(function(){
+  document.getElementById('msg').innerHTML='We could not load the communities just now. Please <a href="'+esc(BASE+'/communities')+'" target="_top">refresh the page</a>.';
+ });
+})();
+</script>
+</body></html>
